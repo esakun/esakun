@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TODO supply a title</title>
+<title>HelloWorld WebGL!</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/style.css" />
@@ -10,24 +10,31 @@
 
 <script id="vs" type="x-shader/x-vertex">
 attribute vec3 position;
+attribute vec3 normal;
+attribute vec4 color;
+uniform mat4 mvpMatrix;
+varying vec4 vColor;
 
 void main ()
 {
-	gl_Position = vec4 (position, 1.0);
+	vColor = vec4 (normal, 1.0);
+	gl_Position = mvpMatrix * vec4 (position, 1.0);
 }
 </script>
 
 <script id="fs" type="x-shader/x-fragment">
+precision mediump float;
+varying vec4 vColor;
 void main ()
 {
-	gl_Color = vec4 (0.4, 0.4, 0.4, 1.0);
+	gl_FragColor = vColor;
 }
 </script>
 
 </head>
 
 <body>
+	<p class="title"><a href="http://esakun.hateblo.jp/">HelloWorld WebGL! | 渋谷ほととぎす通信</a></p>
 	<canvas id="canvas"></canvas>
 </body>
-
 </html>
