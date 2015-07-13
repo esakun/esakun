@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WebGLでミクを表示させる</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/style.css" />
+
+<script src="../js/glcubic.js"></script>
+<script src="../js/gl-matrix-min.js"></script>
+<script src="../js/objparser.js"></script>
+<script src="script.js"></script>
+
+<script id="vs" type="x-shader/x-vertex">
+attribute vec3 position;
+attribute vec3 normal;
+varying vec3 vNormal;
+
+uniform mat4 mvpMatrix;
+
+void main ()
+{
+	vNormal = normal;
+	gl_Position = mvpMatrix * vec4(vec3(position), 1.0);
+}
+</script>
+
+<script id="fs" type="x-shader/x-fragment">
+precision mediump float;
+varying vec3 vNormal;
+	
+void main ()
+{
+	gl_FragColor = vec4 (vec3(vNormal), 1.0);
+}
+</script>
+
+</head>
+
+<body><canvas id="canvas"></canvas></body>
+
+</html>
