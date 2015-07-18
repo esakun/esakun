@@ -1,3 +1,8 @@
+/**
+ * 
+ * 初音ミクをロードする
+ * 
+ */
 window.onload = function ()
 {
 	gl3.initGL("canvas");
